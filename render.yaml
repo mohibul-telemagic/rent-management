@@ -1,7 +1,7 @@
 services:
   - type: web
     name: rentease-backend
-    env: docker
+    runtime: docker
     rootDir: backend
     plan: starter
     healthCheckPath: /actuator/health
@@ -35,7 +35,7 @@ services:
 
   - type: web
     name: rentease-frontend
-    env: docker
+    runtime: docker
     rootDir: frontend
     plan: starter
     healthCheckPath: /healthz
