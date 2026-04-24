@@ -1,0 +1,53 @@
+services:
+  - type: web
+    name: rentease-backend
+    env: docker
+    rootDir: backend
+    plan: starter
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: DATABASE_URL
+        fromDatabase:
+          name: rentease-postgres
+          property: connectionString
+      - key: JWT_ALLOW_EPHEMERAL_KEY_PAIR
+        value: "false"
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
+      - key: PUBLIC_INVOICE_BASE_URL
+        sync: false
+      - key: JWT_PRIVATE_KEY_B64
+        sync: false
+      - key: JWT_PUBLIC_KEY_B64
+        sync: false
+      - key: PII_AES256_KEY_B64
+        sync: false
+      - key: AUTH_RATE_LIMIT_MAX_ATTEMPTS
+        value: "20"
+      - key: AUTH_RATE_LIMIT_WINDOW_SECONDS
+        value: "60"
+      - key: JAVA_TOOL_OPTIONS
+        value: "-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0"
+      - key: APP_BOOTSTRAP_ENABLED
+        value: "false"
+
+  - type: web
+    name: rentease-frontend
+    env: docker
+    rootDir: frontend
+    plan: starter
+    healthCheckPath: /healthz
+    envVars:
+      - key: API_UPSTREAM
+        fromService:
+          name: rentease-backend
+          type: web
+          property: hostport
+
+databases:
+  - name: rentease-postgres
+    databaseName: renteasebd
+    user: renteasebd
+    plan: starter

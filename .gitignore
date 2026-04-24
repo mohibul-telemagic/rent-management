@@ -1,0 +1,30 @@
+# Root
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+dist/
+*.log
+
+# Java/Gradle
+.gradle/
+.gradle-cache/
+build/
+out/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Env
+.env
+.env.*
+!.env.production.example
+
+# OS
+*.swp
+*.Zone.Identifier
+local.properties
+.data/

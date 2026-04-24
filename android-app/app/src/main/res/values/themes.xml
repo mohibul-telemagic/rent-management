@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Compatibility alias in case any merged manifest/resource still references this style -->
+    <style name="Theme.Material3.DayNight.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
+    <style name="Theme.SeniorRent" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
+</resources>
